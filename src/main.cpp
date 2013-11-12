@@ -18,6 +18,22 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+// Headers
+#include "Main.hpp"
+
+
 int main(int argc, char *argv[])
 {
+    Main(argc, argv);
 }
+
+
+
+
+
+
+
+
+
+
+
