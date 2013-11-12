@@ -25,7 +25,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 // Headers
 #include <chrono>
 #include <iostream>
-#include <vector>
+#include <queue>
 
 
 class Main
@@ -52,6 +52,7 @@ private:
     std::chrono::seconds sleep_time;
     std::chrono::time_point<std::chrono::system_clock> started;
     bool sleep_since_exit = false;
+    bool execute_immediately = false;
     std::size_t execution_count = 0;
 
     enum class Parameter
@@ -61,11 +62,10 @@ private:
         hours,
         days,
         weeks,
-        months,
-        years,
         none
     };
-    std::vector<Parameter> activeparam;
+    std::string torun;
+    std::queue<Parameter> activeparam;
 };
 
 
