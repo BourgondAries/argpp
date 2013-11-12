@@ -21,6 +21,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 // Headers
 #include "Argument.hpp"
 #include <cstring>
+#include <stack>
 
 
 ////////////////////////////////////////////////////////////
@@ -28,7 +29,7 @@ void Argument::pass(const int argc, char *argv[])
 {
     m_path = argv[0];
 
-    std::pair<decltype(m_flags_and_parameters)::iterator, bool> last_flag;
+    std::stack<std::pair<decltype(m_flags_and_parameters)::iterator, bool>> unset_flags;
 
     int i = 1;
 
@@ -44,17 +45,17 @@ void Argument::pass(const int argc, char *argv[])
                 }
                 else // A multi-char flag
                 {
-                    {last_flag = m_flags_and_parameters.insert(std::make_pair(argv[i], ""));}
+                    {unset_flags.push(m_flags_and_parameters.insert(std::make_pair(argv[i], "")));}
                 }
             }
             else // A single-char flag
             {
-                for (int x = 1, y = std::strlen(argv[i]); x < y; ++x) {last_flag = m_flags_and_parameters.insert(std::make_pair(std::string("-") + argv[i][x], ""));}
+                for (int x = 1, y = std::strlen(argv[i]); x < y; ++x) {unset_flags.push(m_flags_and_parameters.insert(std::make_pair(std::string("-") + argv[i][x], "")));}
             }
         }
         else // A normal argument
         {
-            if (last_flag.first->second == "") {last_flag.first->second = argv[i];}
+            if (unset_flags.size() > 0) {unset_flags.top().first->second = argv[i]; unset_flags.pop();}
         }
     } // Loop that counts flags
 
