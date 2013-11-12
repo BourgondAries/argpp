@@ -39,6 +39,16 @@ Main::~Main()
 }
 
 
+void Main::run()
+{
+    while (true)
+    {
+        std::cout << "Slept..." << std::endl;
+        std::this_thread::sleep_for(sleep_time);
+    }
+}
+
+
 void Main::setSettings()
 {
     for (int i = 1; i < argument_count; ++i)
@@ -61,11 +71,11 @@ void Main::setActiveParameter(const int i)
     if (argument_array[i][1] == '-')
     {
         std::cout << "Long arg --\n";
-        args_to_process = 1;
+        args_to_process = 1; // Depends on the argument right?
     }
     else // We have short arguments
     {
-        args_to_process = std::strlen(argument_array[i]) - 1;
+        args_to_process = std::strlen(argument_array[i]) - 1; // Also depends on the argument
         if (args_to_process > 1)
         {
             std::cout << "Multi-arg -\n";
@@ -111,5 +121,50 @@ void Main::setActiveParameter(const int i)
 
 void Main::setParameter(const int i)
 {
-
+    switch (activeparam)
+    {
+        case Parameter::seconds:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::minutes:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::hours:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::days:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::weeks:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::months:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        case Parameter::years:
+            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+            break;
+        default:
+            break;
+    }
 }
+
+
+std::size_t Main::getParametersRequired(const int i)
+{
+    std::size_t ssize = std::strlen(argument_array[i]);
+    for (std::size_t z = 0; z < ssize; ++z)
+    {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+

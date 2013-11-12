@@ -24,7 +24,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char *argv[])
 {
-    Main(argc, argv);
+    Main(argc, argv).run();
 }
 
 

@@ -25,6 +25,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 // Headers
 #include <chrono>
 #include <iostream>
+#include <vector>
 
 
 class Main
@@ -33,6 +34,8 @@ public:
 
     Main(int argc, char *argv[]);
     ~Main();
+
+    void run();
 
 private:
 
@@ -43,6 +46,7 @@ private:
     void setSettings();
         void setActiveParameter(const int i);
         void setParameter(const int i);
+        std::size_t getParametersRequired(const int i);
 
     // Options
     std::chrono::seconds sleep_time;
@@ -58,7 +62,8 @@ private:
         days,
         weeks,
         months,
-        years
+        years,
+        none
     } activeparam;
 };
 
