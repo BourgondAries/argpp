@@ -41,6 +41,7 @@ Main::~Main()
 
 void Main::run()
 {
+
     while (true)
     {
         std::cout << "Slept..." << std::endl;
@@ -53,13 +54,13 @@ void Main::setSettings()
 {
     for (int i = 1; i < argument_count; ++i)
     {
-        if (argument_array[i][0] == '-' && args_to_process == 0)
+        std::cout << "Parameter list size: " << activeparam.size() << std::endl;
+        if (argument_array[i][0] == '-' && activeparam.size() == 0)
         {
             this->setActiveParameter(i);
         }
-        else if (args_to_process > 0)
+        else if (activeparam.size() > 0)
         {
-            args_to_process--;
             std::cout << "Processing parameter...\n";
             this->setParameter(i);
         }
@@ -86,34 +87,36 @@ void Main::setActiveParameter(const int i)
         }
         else
         {
+            std::cout << argument_array[i] << std::endl;
             std::cout << "Single arg -\n";
-            if (argument_array[i] == "-s")
+            if (argument_array[i] == std::string("-s\0"))
             {
-                activeparam = Parameter::seconds;
+                activeparam.push_back(Parameter::seconds);
+                std::cout << "Require minutes" << std::endl;
             }
-            else if (argument_array[i] == "-m")
+            else if (argument_array[i] == std::string("-m\0"))
             {
-                activeparam = Parameter::minutes;
+                activeparam.push_back(Parameter::minutes);
             }
-            else if (argument_array[i] == "-h")
+            else if (argument_array[i] == std::string("-h\0"))
             {
-                activeparam = Parameter::hours;
+                activeparam.push_back(Parameter::hours);
             }
-            else if (argument_array[i] == "-d")
+            else if (argument_array[i] == std::string("-d\0"))
             {
-                activeparam = Parameter::days;
+                activeparam.push_back(Parameter::days);
             }
-            else if (argument_array[i] == "-w")
+            else if (argument_array[i] == std::string("-w\0"))
             {
-                activeparam = Parameter::weeks;
+                activeparam.push_back(Parameter::weeks);
             }
-            else if (argument_array[i] == "-n")
+            else if (argument_array[i] == std::string("-n\0"))
             {
-                activeparam = Parameter::months;
+                activeparam.push_back(Parameter::months);
             }
-            else if (argument_array[i] == "-y")
+            else if (argument_array[i] == std::string("-y\0"))
             {
-                activeparam = Parameter::years;
+                activeparam.push_back(Parameter::years);
             }
         }
     }
@@ -121,31 +124,36 @@ void Main::setActiveParameter(const int i)
 
 void Main::setParameter(const int i)
 {
-    switch (activeparam)
+    while (!activeparam.empty())
     {
-        case Parameter::seconds:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::minutes:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::hours:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::days:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::weeks:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::months:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        case Parameter::years:
-            sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
-            break;
-        default:
-            break;
+        std::cout << "Parameter list size from setParameter:" << activeparam.size() << std::endl;
+        switch (activeparam.front())
+        {
+            case Parameter::seconds:
+                sleep_time += std::chrono::seconds(std::atoi(argument_array[i]));
+                break;
+            case Parameter::minutes:
+                sleep_time += std::chrono::minutes(std::atoi(argument_array[i]));
+                break;
+            case Parameter::hours:
+                sleep_time += std::chrono::hours(std::atoi(argument_array[i]));
+                break;
+            case Parameter::days:
+                sleep_time += std::chrono::hours(24 * std::atoi(argument_array[i]));
+                break;
+            case Parameter::weeks:
+                sleep_time += std::chrono::hours(7 * 24 * std::atoi(argument_array[i]));
+                break;
+            case Parameter::months:
+                sleep_time += std::chrono::hours(30 * 24 * std::atoi(argument_array[i]));
+                break;
+            case Parameter::years:
+                sleep_time += std::chrono::hours(365 * 24 * std::atoi(argument_array[i]));
+                break;
+            default:
+                break;
+        }
+        activeparam.erase(activeparam.begin());
     }
 }
 

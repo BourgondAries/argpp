@@ -64,7 +64,8 @@ private:
         months,
         years,
         none
-    } activeparam;
+    };
+    std::vector<Parameter> activeparam;
 };
 
 
