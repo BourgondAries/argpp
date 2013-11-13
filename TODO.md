@@ -8,4 +8,5 @@
 [x] - Create a stack of unset flags  
 [x] - Pop each flag and assign the arguments  
 [x] - Allow setting a certain flag to take no arguments: "Arguments::setInert({const std::string &flag | const char flag})"  
-[ ] - Ignore stacking inert flags  
+[x] - Ignore stacking inert flags  
+[x] - Add support for adding inert flags in a concatenated manner

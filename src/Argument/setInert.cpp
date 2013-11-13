@@ -25,7 +25,25 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 ////////////////////////////////////////////////////////////
 void Argument::setInert(const std::string &flag)
 {
-    m_inert_flags.insert(flag);
+    const std::size_t sz = flag.size();
+    if (sz > 0)
+    {
+        if (flag[0] == '-')
+        {
+            if (sz > 1 && flag[1] == '-')
+            {
+                m_inert_flags.insert(flag);
+            }
+            else
+            {
+                for (int i = 1; i < sz; ++i)
+                {
+                    m_inert_flags.insert(std::string("-") + flag[i]);
+                }
+            }
+        }
+    }
+
 }
 
 ////////////////////////////////////////////////////////////

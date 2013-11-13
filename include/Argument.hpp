@@ -65,7 +65,10 @@ private:
     std::set<std::string> m_inert_flags;
 
     typedef
-        std::stack<std::pair<decltype(m_flags_and_parameters)::iterator, bool>>
+        std::pair<decltype(m_flags_and_parameters)::iterator, bool>
+        InsertReturn;
+    typedef
+        std::stack<InsertReturn>
         TheUnset;
 
     void setArgumentOfUnsetUninertFlag

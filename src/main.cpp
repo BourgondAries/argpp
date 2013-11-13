@@ -25,11 +25,10 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char *argv[])
 {
-    Argument arg(argc, argv);
-    arg.setInert("-a");
-    arg.setInert("-b");
-    arg.setInert("-d");
-    arg.setInert("-a");
+    Argument arg;
+    arg.setInert("-abdo");
+    arg.setInert("--alfa");
+    arg.pass(argc, argv);
     std::cout << arg << std::endl;
 
 }

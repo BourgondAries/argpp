@@ -39,16 +39,20 @@ void Argument::setSingleCharFlags
             );
             return;
         }
-        unset_flags.push
+        InsertReturn it = m_flags_and_parameters.insert
         (
-            m_flags_and_parameters.insert
+            std::make_pair
             (
-                std::make_pair
-                (
-                    std::string("-")
-                    + argument[x], ""
-                )
+                std::string("-")
+                + argument[x], ""
             )
         );
+        if (!isInert(std::string("-") + argument[x]))
+        {
+            unset_flags.push
+            (
+                it
+            );
+        }
     }
 }

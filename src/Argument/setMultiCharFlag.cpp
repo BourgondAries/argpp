@@ -33,16 +33,22 @@ void Argument::setMultiCharFlag
     {
         if (argument[x] == '=')
         {
-            unset_flags.push
-            (
-                m_flags_and_parameters.insert
+            {
+                InsertReturn it = m_flags_and_parameters.insert
                 (
                     std::make_pair
                     (
                         tmp, ""
                     )
-                )
-            );
+                );
+                if (!isInert(tmp))
+                {
+                    unset_flags.push
+                    (
+                        it
+                    );
+                }
+            }
             setArgumentOfUnsetUninertFlag
             (
                 parseEqualArgument(argument, x),
@@ -52,14 +58,20 @@ void Argument::setMultiCharFlag
         }
         tmp.push_back(argument[x]);
     }
-    unset_flags.push
-    (
-        m_flags_and_parameters.insert
+    {
+        InsertReturn it = m_flags_and_parameters.insert
         (
             std::make_pair
             (
                 tmp, ""
             )
-        )
-    );
+        );
+        if (!isInert(tmp))
+        {
+            unset_flags.push
+            (
+                it
+            );
+        }
+    }
 }
