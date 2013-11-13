@@ -23,6 +23,7 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstring>
 #include <stack>
 #include <iostream>
+#include <sstream>
 
 
 ////////////////////////////////////////////////////////////
@@ -69,5 +70,23 @@ void Argument::pass(const int argc, char *argv[])
 ////////////////////////////////////////////////////////////
 void Argument::pass(const std::string &argument)
 {
-
+    std::stringstream ss;
+    ss << argument;
+    std::string tmp;
+    ss >> tmp;
+    std::cout << tmp;
+//    std::unique_ptr<std::unique_ptr<char>> data(new char*);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

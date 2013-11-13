@@ -10,3 +10,7 @@
 [x] - Allow setting a certain flag to take no arguments: "Arguments::setInert({const std::string &flag | const char flag})"  
 [x] - Ignore stacking inert flags  
 [x] - Add support for adding inert flags in a concatenated manner
+[ ] - Add an item to the operand array when the stack is filled
+[ ] - Retrieve this operand string
+[ ] - Create a tokenizer of strings
+[ ] - Allow calling pass with a string

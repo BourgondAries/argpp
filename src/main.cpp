@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     arg.setInert("-abdo");
     arg.setInert("--alfa");
     arg.pass(argc, argv);
+    arg.pass("path string -ad");
     std::cout << arg << std::endl;
 
 }
