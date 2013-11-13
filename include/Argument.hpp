@@ -1,20 +1,20 @@
 /*
 Copyright 2013 Kevin Robert Stravers
 
-This file is part of schdl.
+This file is part of Arg++.
 
-schdl is free software: you can redistribute it and/or modify
+Arg++ is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-schdl is distributed in the hope that it will be useful,
+Arg++ is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with schdl.  If not, see <http://www.gnu.org/licenses/>.
+along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
@@ -23,8 +23,10 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 
 // Headers
 #include <string>
-#include <unordered_map>
+#include <map>
+#include <set>
 #include <vector>
+#include <stack>
 
 
 class Argument
@@ -47,11 +49,54 @@ public:
 
     const std::string &getPath() const;
 
+    void setInert(const std::string &flag);
+    void setInert(const char flag);
+
+    bool isInert(const std::string &flag) const;
+    bool isInert(const char flag) const;
+
+    friend std::ostream &operator<<(std::ostream &out, const Argument &argument);
+
 private:
 
     std::string m_path;
-    std::unordered_map<std::string, std::string> m_flags_and_parameters;
+    std::map<std::string, std::string> m_flags_and_parameters;
     std::vector<std::string> m_unflagged_parameters;
+    std::set<std::string> m_inert_flags;
+
+    typedef
+        std::stack<std::pair<decltype(m_flags_and_parameters)::iterator, bool>>
+        TheUnset;
+
+    void setArgumentOfUnsetUninertFlag
+    (
+        const std::string &argument,
+        TheUnset &unset_flags
+    );
+
+    void setSingleCharFlags
+    (
+        const std::string &argument,
+        TheUnset &unset_flags
+    );
+
+    std::string parseEqualArgument
+    (
+        const std::string &argument,
+        int x
+    );
+
+    void parseEqualArgument
+    (
+        const std::string &argument,
+        TheUnset &unset_flags
+    );
+
+    void setMultiCharFlag
+    (
+        const std::string &argument,
+        TheUnset &unset_flags
+    );
 
 };
 

@@ -1,20 +1,20 @@
 /*
 Copyright 2013 Kevin Robert Stravers
 
-This file is part of schdl.
+This file is part of Arg++.
 
-schdl is free software: you can redistribute it and/or modify
+Arg++ is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-schdl is distributed in the hope that it will be useful,
+Arg++ is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with schdl.  If not, see <http://www.gnu.org/licenses/>.
+along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
@@ -22,6 +22,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 #include "Argument.hpp"
 #include <cstring>
 #include <stack>
+#include <iostream>
 
 
 ////////////////////////////////////////////////////////////
@@ -45,17 +46,17 @@ void Argument::pass(const int argc, char *argv[])
                 }
                 else // A multi-char flag
                 {
-                    {unset_flags.push(m_flags_and_parameters.insert(std::make_pair(argv[i], "")));}
+                    setMultiCharFlag(argv[i], unset_flags);
                 }
             }
             else // A single-char flag
             {
-                for (int x = 1, y = std::strlen(argv[i]); x < y; ++x) {unset_flags.push(m_flags_and_parameters.insert(std::make_pair(std::string("-") + argv[i][x], "")));}
+                setSingleCharFlags(argv[i], unset_flags);
             }
         }
         else // A normal argument
         {
-            if (unset_flags.size() > 0) {unset_flags.top().first->second = argv[i]; unset_flags.pop();}
+            setArgumentOfUnsetUninertFlag(argv[i], unset_flags);
         }
     } // Loop that counts flags
 

@@ -14,33 +14,23 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
+along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
 // Headers
-#include <iostream>
 #include "Argument.hpp"
 
 
-int main(int argc, char *argv[])
+void Argument::setArgumentOfUnsetUninertFlag
+(
+    const std::string &argument,
+    TheUnset &unset_flags
+)
 {
-    Argument arg(argc, argv);
-    arg.setInert("-a");
-    arg.setInert("-b");
-    arg.setInert("-d");
-    arg.setInert("-a");
-    std::cout << arg << std::endl;
-
+    if (unset_flags.size() > 0)
+    {
+        unset_flags.top().first->second = argument;
+        unset_flags.pop();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
