@@ -42,11 +42,12 @@ A single-characted flag can be chained:
 ### Option-Argument Mirroring ###
 ---------------------------------
 
-When chaining flags, arguments will be applied to the last unset, _non-inert_ flag such that in:  
-  "-abc uvw dre xyz"  
+Arguments will be applied to the last unset, _non-inert_ flag such that in:  
+  "-q -abc uvw dre xyz nmr"  
 uvw will be bound to "-c"  
 dre will be bound to "-b"  
-and xyz will be bound to "-a"  
+xyz will be bound to "-a"  
+and nmr will be bound to "-q"
 
 ### Inertia ###
 ---------------
