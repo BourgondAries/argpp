@@ -72,10 +72,15 @@ void Argument::pass(const std::string &argument)
 {
     std::stringstream ss;
     ss << argument;
-    std::string tmp;
-    ss >> tmp;
-    std::cout << tmp;
-//    std::unique_ptr<std::unique_ptr<char>> data(new char*);
+    std::vector<std::string> all;
+    std::vector<char *> el;
+    while (ss.good())
+    {
+        all.emplace_back();
+        ss >> all.back();
+        el.push_back(const_cast<char *>(all.back().data()));
+    }
+    this->pass(all.size(), &el[0]);
 }
 
 

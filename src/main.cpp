@@ -26,12 +26,42 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
     Argument arg;
-    arg.setInert("-abdo");
-    arg.setInert("--alfa");
-    arg.pass(argc, argv);
-    arg.pass("path string -ad");
-    std::cout << arg << std::endl;
 
+    // Set inert values
+    arg.setInert("-nvs");
+    arg.setInert("--no-sound");
+    arg.setInert("--verbose");
+    arg.setInert("--silent");
+
+    // Pass parameters
+//    arg.pass(argc, argv);
+    arg.pass("/a/location/program -so -v log.txt --method=23 -qre=alpha 2013");
+
+    // Apply settings
+    if (arg.isPassed("-o"))
+    {
+        std::cout << "Outputting to a file\n";
+        std::cout << "We will output to: " << arg.getArgument("-o") << "\n";
+    }
+
+    if (arg.isPassed("-l"))
+    {
+        std::cout << "Using long notation\n";
+    }
+
+    if (arg.isPassed("--method"))
+    {
+        std::cout << "Method: " << arg.getArgument("--method") << "\n";
+    }
+
+    if (arg.isPassed("-s") || arg.isPassed("--silent"))
+    {
+        std::cout << "shhh\n";
+    }
+
+    // Dump all passed parameters
+    std::cout << "\n\n";
+    std::cout << arg;
 }
 
 

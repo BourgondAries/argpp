@@ -41,7 +41,7 @@ std::ostream &operator<<(std::ostream &out, const Argument &argument)
         }
     }
 
-    out << "Path: \"" << argument.m_path << "\n";
+    out << "Path: " << argument.m_path << "\n";
     out
         << std::setw(longest_flag)
         << "Flag"

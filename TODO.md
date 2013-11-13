@@ -12,5 +12,5 @@
 [x] - Add support for adding inert flags in a concatenated manner
 [ ] - Add an item to the operand array when the stack is filled
 [ ] - Retrieve this operand string
-[ ] - Create a tokenizer of strings
-[ ] - Allow calling pass with a string
+[x] - Create a tokenizer of strings
+[x] - Allow calling pass with a string
