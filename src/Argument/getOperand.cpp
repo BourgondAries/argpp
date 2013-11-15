@@ -14,19 +14,20 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with schdl.  If not, see <http://www.gnu.org/licenses/>.
+along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
 // Headers
 #include "Argument.hpp"
+#include <cstring>
+#include <stack>
+#include <iostream>
+#include <sstream>
 
 
-std::string Argument::parseEqualArgument
-(
-    const std::string &argument,
-    int x
-)
+////////////////////////////////////////////////////////////
+const std::string &Argument::getOperand(int id) const
 {
-    return std::string(argument.begin() + x + 1, argument.end());
+    return m_operands[id];
 }

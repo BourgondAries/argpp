@@ -55,13 +55,16 @@ public:
     bool isInert(const std::string &flag) const;
     bool isInert(const char flag) const;
 
+    const std::string &getOperand(int id) const;
+    int getOperandCount() const;
+
     friend std::ostream &operator<<(std::ostream &out, const Argument &argument);
 
 private:
 
     std::string m_path;
     std::map<std::string, std::string> m_flags_and_parameters;
-    std::vector<std::string> m_unflagged_parameters;
+    std::vector<std::string> m_operands;
     std::set<std::string> m_inert_flags;
 
     typedef

@@ -1,10 +1,10 @@
 # Arg++ #
 ---------
 
-A nice and clean C++ class for handling the work of parsing input arguments.
-Sorts the arguments correctly and binds them together with flags.
-This allows the programmer to quickly identify and implement different command-line input.
-At the same time; all _dirty_ code is abstracted away.
+A nice and clean C++ class for handling the work of parsing input arguments.  
+Sorts the arguments correctly and binds them together with flags.  
+This allows the programmer to quickly identify and implement different command-line input.  
+At the same time; all _dirty_ code is abstracted away.  
 
 ## Tiny Tutorial ##
 -------------------
@@ -36,7 +36,7 @@ An argument will always be bound to the last unset, _non-inert_ flag.
 ### Flag Chaining ###
 ---------------------
 
-A single-characted flag can be chained:
+A single-characted flag can be chained:  
   "-a -b -c" becomes "-abc"
 
 ### Option-Argument Mirroring ###
@@ -74,7 +74,7 @@ All flag-starters ('-' and "--") will be ignored after issueing a "--" followed 
   Let flag "-b" be inert.  
   "-ab data -- -c dr"  
 Will bind "data" to "-a"  
-Will add "-c" and "dr" to a collection of operands.
+Will add "-c" and "dr" to a collection of operands.  
 
 
 ## About ##
