@@ -28,7 +28,7 @@ Argument::Argument()
 }
 
 
-Argument::Argument(const int argc, char *argv[])
+Argument::Argument(const std::size_t argc, char *argv[])
 {
     this->pass(argc, argv);
 }

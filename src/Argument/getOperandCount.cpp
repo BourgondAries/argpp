@@ -23,7 +23,7 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 
 ////////////////////////////////////////////////////////////
-int Argument::getOperandCount() const
+std::size_t Argument::getOperandCount() const
 {
     return m_operands.size();
 }

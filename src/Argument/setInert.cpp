@@ -36,7 +36,7 @@ void Argument::setInert(const std::string &flag)
             }
             else
             {
-                for (int i = 1; i < sz; ++i)
+                for (std::size_t i = 1; i < sz; ++i)
                 {
                     m_inert_flags.insert(std::string("-") + flag[i]);
                 }

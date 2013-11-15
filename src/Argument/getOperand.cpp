@@ -23,7 +23,7 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 
 ////////////////////////////////////////////////////////////
-const std::string &Argument::getOperand(int id) const
+const std::string &Argument::getOperand(const std::size_t id) const
 {
     return m_operands[id];
 }

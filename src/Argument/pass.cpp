@@ -27,13 +27,13 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 
 ////////////////////////////////////////////////////////////
-void Argument::pass(const int argc, char *argv[])
+void Argument::pass(const std::size_t argc, char *argv[])
 {
     m_path = argv[0];
 
     std::stack<std::pair<decltype(m_flags_and_parameters)::iterator, bool>> unset_flags;
 
-    int i = 1;
+    std::size_t i = 1;
 
     for (; i < argc; ++i)
     {
@@ -63,7 +63,7 @@ void Argument::pass(const int argc, char *argv[])
 
     for (; i < argc; ++i)
     {
-        m_unflagged_parameters.emplace_back(argv[i]);
+        m_operands.emplace_back(argv[i]);
     } // Loop that accumulates all other arguments
 }
 

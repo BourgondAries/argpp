@@ -25,8 +25,8 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 std::string Argument::parseEqualArgument
 (
     const std::string &argument,
-    int x
+    std::size_t x
 )
 {
-    return std::string(argument.begin() + x + 1, argument.end());
+    return std::string(argument.begin() + x + 1u, argument.end());
 }

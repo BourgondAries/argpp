@@ -23,15 +23,19 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 
 ////////////////////////////////////////////////////////////
-const std::string &Argument::getArgument(const std::string &argument) const
+const std::string &Argument::getArgument(const std::string &flag) const
 {
-    return m_flags_and_parameters.find(argument)->second;
+    return m_flags_and_parameters.find(flag)->second;
 }
 
 ////////////////////////////////////////////////////////////
-const std::string &Argument::getArgument(const char argument) const
+const std::string &Argument::getArgument(const char flag) const
 {
     std::string tmp;
-    tmp.push_back(argument);
+    tmp.push_back(flag);
     return this->getArgument(tmp);
 }
+
+
+
+

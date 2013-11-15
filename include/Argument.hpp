@@ -27,6 +27,7 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 #include <set>
 #include <vector>
 #include <stack>
+#include <cstddef>
 
 
 class Argument
@@ -34,11 +35,11 @@ class Argument
 public:
 
     Argument();
-    Argument(const int argc, char **argv);
+    Argument(const std::size_t argc, char **argv);
     Argument(const std::string &argument);
     ~Argument();
 
-    void pass(const int argc, char **argv);
+    void pass(const std::size_t argc, char **argv);
     void pass(const std::string &argument);
 
     bool isPassed(const std::string &flag) const;
@@ -55,8 +56,8 @@ public:
     bool isInert(const std::string &flag) const;
     bool isInert(const char flag) const;
 
-    const std::string &getOperand(int id) const;
-    int getOperandCount() const;
+    const std::string &getOperand(const std::size_t id) const;
+    std::size_t getOperandCount() const;
 
     friend std::ostream &operator<<(std::ostream &out, const Argument &argument);
 
@@ -89,7 +90,7 @@ private:
     std::string parseEqualArgument
     (
         const std::string &argument,
-        int x
+        std::size_t x
     );
 
     void parseEqualArgument

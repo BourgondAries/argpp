@@ -22,6 +22,7 @@ along with schdl.  If not, see <http://www.gnu.org/licenses/>.
 #include "Argument.hpp"
 
 
+////////////////////////////////////////////////////////////
 void Argument::setMultiCharFlag
 (
     const std::string &argument,
@@ -29,7 +30,7 @@ void Argument::setMultiCharFlag
 )
 {
     std::string tmp("--");
-    for (int x = 2; x < argument.size(); ++x)
+    for (std::size_t x = 2u; x < argument.size(); ++x)
     {
         if (argument[x] == '=')
         {
