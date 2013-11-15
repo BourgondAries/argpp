@@ -6,6 +6,13 @@ Sorts the arguments correctly and binds them together with flags.
 This allows the programmer to quickly identify and implement different command-line input.  
 At the same time; all _dirty_ code is abstracted away.  
 
+## Command Line Conventions ##
+------------------------------
+
+Maybe this'll be useful if you're not very known with command-line commands.  
+http://publib.boulder.ibm.com/tividd/td/tec/SC32-1232-00/en_US/HTML/ecormst15.htm
+
+
 ## Tiny Tutorial ##
 -------------------
 
@@ -64,7 +71,9 @@ Will bind "some" to "-c" and "argument" to "-a".
 Operands are flagless arguments. They are created when:  
 1. There are no more flags to bind to  
 or  
-2. We have given anything behind "--" (Flag Terminator)
+2. We have given anything behind "--" (Flag Terminator)  
+3. Operands are sorted by order and can be retrieved using getOperand(std::size_t).  
+4. getOperandCount() returns the amount of operands. getOperand does not check bounds.
 
 ### Flag Termination ###
 ------------------------
@@ -82,7 +91,8 @@ Will add "-c" and "dr" to a collection of operands.
 
 C++ argument parsing utility class.  
 Written in pure C++.  
-Conforms with the GNU Utility Syntax guidelines. One exception: "-o foo" is NOT "-ofoo" due to "option-argument mirroring".
+Conforms with the GNU Utility Syntax guidelines. One exception: "-o foo" is NOT "-ofoo" due to "option-argument mirroring".  
+More info: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html
 
 ## Sample ##
 ------------
