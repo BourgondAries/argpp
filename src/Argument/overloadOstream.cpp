@@ -57,5 +57,12 @@ std::ostream &operator<<(std::ostream &out, const Argument &argument)
             << "      " << x.second
             << "\n";
     }
+
+    out << "\n" << "Operands\n";
+    for (auto &x : argument.m_operands)
+    {
+        out
+            << " " << x << "\n";
+    }
     return out;
 }

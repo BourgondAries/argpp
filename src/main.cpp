@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     // Pass parameters
 //    arg.pass(argc, argv);
-    arg.pass("/a/location/program -so -v log.txt --method=23 -qre=alpha 2013");
+    arg.pass("/a/location/program -- -so -v log.txt --method=23 -qre=alpha 2013 and there are too many");
 
     // Apply settings
     if (arg.isPassed("-o"))

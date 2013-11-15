@@ -33,4 +33,8 @@ void Argument::setArgumentOfUnsetUninertFlag
         unset_flags.top().first->second = argument;
         unset_flags.pop();
     }
+    else
+    {
+        m_operands.emplace_back(argument);
+    }
 }

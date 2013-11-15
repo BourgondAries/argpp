@@ -43,7 +43,7 @@ void Argument::pass(const std::size_t argc, char *argv[])
             {
                 if (argv[i][2] == '\0') // An end of flags flag
                 {
-                    break;
+                    ++i; break;
                 }
                 else // A multi-char flag
                 {
