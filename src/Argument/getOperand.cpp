@@ -20,10 +20,6 @@ along with Arg++.  If not, see <http://www.gnu.org/licenses/>.
 
 // Headers
 #include "Argument.hpp"
-#include <cstring>
-#include <stack>
-#include <iostream>
-#include <sstream>
 
 
 ////////////////////////////////////////////////////////////
